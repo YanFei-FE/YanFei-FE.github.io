@@ -15,7 +15,7 @@
 <meta property="og:description" content="表单修饰符  v-model.lazy    失去焦点同步一次  v-model.number  格式化数字  v-model.trim    去掉首尾空格  事件修饰符  @click.stop     阻止冒泡  @click.prevent  阻止默认行为  @click.self     只有本节点触发，子节点冒泡也不会触发  @click.once     只触发一次  计算属性 co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-03T04:12:59.000Z">
-<meta property="article:modified_time" content="2021-04-17T11:16:32.952Z">
+<meta property="article:modified_time" content="2021-05-11T09:14:13.589Z">
 <meta property="article:author" content="Yan Fei">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="VUE">
@@ -32,7 +32,7 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
   <div id="container">
@@ -111,17 +111,19 @@
 <li>v-model</li>
 </ul>
 </li>
-<li><h3 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局组件</span></span><br><span class="line">Vue.component(<span class="string">&quot;name&quot;</span>,&#123;</span><br><span class="line">    complate: <span class="string">`&lt;div&gt;&lt;/div&gt;`</span>,</span><br><span class="line">    <span class="comment">//局部组件</span></span><br><span class="line">    components: &#123;</span><br><span class="line">        name: &#123;</span><br><span class="line">            template: <span class="string">`&lt;div&gt;局部组件&lt;/div&gt;`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            data: data</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li><h3 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局组件</span></span><br><span class="line">Vue.component(<span class="string">&quot;name&quot;</span>,&#123;</span><br><span class="line">    <span class="attr">complate</span>: <span class="string">`&lt;div&gt;&lt;/div&gt;`</span>,</span><br><span class="line">    <span class="comment">//局部组件</span></span><br><span class="line">    <span class="attr">components</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: &#123;</span><br><span class="line">            <span class="attr">template</span>: <span class="string">`&lt;div&gt;局部组件&lt;/div&gt;`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">data</span>: data</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>  组件编写方式与Vue实例的区别<br>  *自定义组件需要有一个root element<br>  *父子组件的data是无法共享<br>  *组件可以有data, methods, computed….,但是data 必须是一个函数</p>
 <p>  组件通信<br>  1.父子组件传值 (props down, events up)<br>  2.属性验证<br>  <code>props:&#123;name:Number&#125;</code> Number, String, Boolean, Array, Object, Function, null(不限制类型)<br>  3.事件机制<br>  a.使用 <code>$on(eventName)</code> 监听事件<br>  b.使用 <code>$emit(eventName)</code> 触发事件<br>  4.Ref<br>  *<code>&lt;input ref=&quot;mytext&quot;/&gt; this.$refs.mytext</code><br>  5.事件总线<br>  *<code>var bus = new Vue();</code><br>  *<code>mounted</code>生命周期中进行监听</p>
 <p>  动态组件<br>  *<component> 元素，动态地绑定多个组件到它的 is 属性<br>  *<keep-alive> 保留状态，避免重新渲染</p>
+</li>
+<li><h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><p>  (1)自定义指令介绍 directives<br>  (2)钩子函数<br>  *参数 el,binding,vnode(vnode.context)<br>  *bind,inserted,update,componentUpdated,unbind<br>  (3)函数简写<br>  (4)自定义指令-轮播<br>  *inserted 插入最后一个元素时调用(vnode.context.datalist.length-1)<br>  *this.$nextTick()</p>
 </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="https://yanfei.me/VUE/" data-id="cknlng8kc0000bkmhcshfdw5c" class="article-share-link">分享</a> -->
+      <!-- <a data-url="https://yanfei.me/VUE/" data-id="ckujgy0t90001q4mhgt046o80" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
@@ -131,6 +133,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/HTML5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTML5
+        
+      </div>
+    </a>
   
   
     <a href="/ES7-ES11/" id="article-nav-older" class="article-nav-link-wrap">
@@ -154,7 +165,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/" rel="tag">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript7-ECMAScript11/" rel="tag">ECMAScript7 - ECMAScript11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/" rel="tag">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript7-ECMAScript11/" rel="tag">ECMAScript7 - ECMAScript11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -164,7 +175,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ECMAScript6/" style="font-size: 10px;">ECMAScript6</a> <a href="/tags/ECMAScript7-ECMAScript11/" style="font-size: 10px;">ECMAScript7 - ECMAScript11</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">笔记</a>
+      <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/ECMAScript6/" style="font-size: 10px;">ECMAScript6</a> <a href="/tags/ECMAScript7-ECMAScript11/" style="font-size: 10px;">ECMAScript7 - ECMAScript11</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">笔记</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
     </div>
   </div>
 
@@ -173,7 +184,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li></ul>
     </div>
   </div>
 
@@ -186,15 +197,23 @@
       <ul>
         
           <li>
+            <a href="/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/">前端面试题合集</a>
+          </li>
+        
+          <li>
+            <a href="/CSS3/">CSS3</a>
+          </li>
+        
+          <li>
+            <a href="/HTML5/">HTML5</a>
+          </li>
+        
+          <li>
             <a href="/VUE/">VUE</a>
           </li>
         
           <li>
             <a href="/ES7-ES11/">ES7 ~ ES11</a>
-          </li>
-        
-          <li>
-            <a href="/ECMAScript6/">ECMAScript6</a>
           </li>
         
       </ul>
