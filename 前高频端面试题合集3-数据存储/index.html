@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%863-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/img%5C07.png">
 <meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%863-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/img%5C06.png">
 <meta property="article:published_time" content="2021-10-18T07:32:21.000Z">
-<meta property="article:modified_time" content="2021-10-18T07:33:05.231Z">
+<meta property="article:modified_time" content="2021-10-19T01:52:58.942Z">
 <meta property="article:author" content="Yan Fei">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="前高频端面试题合集">
@@ -128,7 +128,7 @@
 <li><p>原理：验证当前类的原型prototype是否会出现在实例的原型链__proto__上，只要在它的原型链上，则结果都为true。因此，<code>instanceof</code> 在查找的过程中会遍历左边变量的原型链，直到找到右边变量的 <code>prototype</code>，找到返回true，未找到返回false</p>
 </li>
 <li><p>手写instanceof</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myinstanceOf_</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> proto = left.__proto__;</span><br><span class="line">            <span class="keyword">let</span> prototype = right.prototype</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (proto == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">                <span class="keyword">if</span> (proto == prototype) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">                proto = proto.__proto__;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myinstanceOf_</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> proto = left.__proto__;</span><br><span class="line">  <span class="keyword">let</span> prototype = right.prototype</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (proto == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (proto == prototype) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    proto = proto.__proto__;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="2-3-constructor-用于引用数据类型"><a href="#2-3-constructor-用于引用数据类型" class="headerlink" title="2.3 constructor (用于引用数据类型)"></a>2.3 constructor (用于引用数据类型)</h3><ul>
 <li>语法： 检测数据.constructor === class</li>
@@ -220,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <!-- <a data-url="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%863-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" data-id="ckuwkq41o000i8kmh8bwy31dr" class="article-share-link">分享</a> -->
+      <!-- <a data-url="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%863-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" data-id="ckv0cako5000gdomhbt95c54t" class="article-share-link">分享</a> -->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
