@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>前高频端面试题合集13-http | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. http 0.9下面我们就来看看 HTTP&#x2F;0.9 的一个完整的请求流程（可参考下图）。 因为 HTTP 都是基于 TCP 协议的，所以客户端先要根据 IP 地址、端口和服务器建立 TCP 连接，而建立连接的过程就是 TCP 协议三次握手的过程。 建立好连接之后，会发送一个 GET 请求行的信息，如GET &#x2F;index.html用来获取 index.html。 服务器接收请求信息之后，读取对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前高频端面试题合集13-http">
+<meta property="og:url" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="1. http 0.9下面我们就来看看 HTTP&#x2F;0.9 的一个完整的请求流程（可参考下图）。 因为 HTTP 都是基于 TCP 协议的，所以客户端先要根据 IP 地址、端口和服务器建立 TCP 连接，而建立连接的过程就是 TCP 协议三次握手的过程。 建立好连接之后，会发送一个 GET 请求行的信息，如GET &#x2F;index.html用来获取 index.html。 服务器接收请求信息之后，读取对">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/00.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/01.png">
+<meta property="og:image" content="d:/秋招集训营/05_网络/02_http/02.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/03.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/04.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/05.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/06.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/08.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/09.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/10.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/11.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/http%E7%BC%93%E5%AD%98.png">
+<meta property="article:published_time" content="2021-10-25T01:16:48.000Z">
+<meta property="article:modified_time" content="2021-10-25T02:24:43.906Z">
+<meta property="article:author" content="Yan Fei">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="前高频端面试题合集">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/00.png">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">时间轴</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yanfei.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-前高频端面试题合集13-http" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/" class="article-date">
+  <time datetime="2021-10-25T01:16:48.000Z" itemprop="datePublished">2021-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前高频端面试题合集13-http
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-http-0-9"><a href="#1-http-0-9" class="headerlink" title="1. http 0.9"></a>1. http 0.9</h2><p>下面我们就来看看 HTTP/0.9 的一个完整的请求流程（可参考下图）。</p>
+<p>因为 HTTP 都是基于 TCP 协议的，所以客户端先要根据 IP 地址、端口和服务器建立 TCP 连接，而建立连接的过程就是 TCP 协议三次握手的过程。</p>
+<p>建立好连接之后，会发送一个 GET 请求行的信息，如GET /index.html用来获取 index.html。</p>
+<p>服务器接收请求信息之后，读取对应的 HTML 文件，并将数据以 ASCII 字符流返回给客户端。</p>
+<p>HTML 文档传输完成后，断开连接。</p>
+<p><img src="00.png" alt="image-20210603174403024"></p>
+<p>HTTP/0.9 请求流程总的来说，当时的需求很简单，就是用来传输体积很小的 HTML 文件，所以 HTTP/0.9 的实现有以下三个特点。</p>
+<p><strong>第一个是只有一个请求行，并没有 HTTP 请求头和请求体，因为只需要一个请求行就可以完整表达客户端的需求了。</strong></p>
+<p><strong>第二个是服务器也没有返回头信息，这是因为服务器端并不需要告诉客户端太多信息，只需要返回数据就可以了。</strong></p>
+<p><strong>第三个是返回的文件内容是以 ASCII 字符流来传输的，因为都是 HTML 格式的文件，所以使用 ASCII 字节码来传输是最合适的。</strong></p>
+<h2 id="2-http-1-0"><a href="#2-http-1-0" class="headerlink" title="2. http 1.0"></a>2. http 1.0</h2><p><img src="01.png" alt="image-20210603174722539"></p>
+<img src="D:\秋招集训营\05_网络\02_http\02.png" alt="image-20210603175205203" style="zoom:50%;" />
+
+<p><strong>第一个：支持多种类型、格式、编码、语言的文件，添加请求头和响应头</strong></p>
+<p>请求头的信息告诉服务器浏览器期望返回的数据的类型、压缩格式、编码类型、语言类型，响应头告诉浏览器我当前返回的数据类型、压缩格式、编码类型、语言类型，因为可能浏览器需要的服务器做不到</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">accept: text/html;</span><br><span class="line">accept-encoding: gzip, deflate, br;</span><br><span class="line">accept-Charset: ISO-<span class="number">8859</span>-<span class="number">1</span>,utf-<span class="number">8</span>;</span><br><span class="line">accept-language: zh-CN,zh;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">content-encoding: brcontent-type: text/html; charset=UTF-<span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>第二个：有的请求服务器可能无法处理，或者处理出错，这时候就需要告诉浏览器服务器最终处理该请求的情况，这就引入了状态码。状态码是通过响应行的方式来通知浏览器的。</strong></p>
+<p><strong>第三个：为了减轻服务器的压力，在 HTTP/1.0 中提供了 Cache 机制，用来缓存已经下载过的数据。</strong></p>
+<p><strong>第四个：服务器需要统计客户端的基础信息，比如 Windows 和 macOS 的用户数量分别是多少，所以 HTTP/1.0 的请求头中还加入了用户代理的字段。</strong></p>
+<h2 id="3-http-1-1"><a href="#3-http-1-1" class="headerlink" title="3. http 1.1"></a>3. http 1.1</h2><p><strong>第一个：tcp持久连接，多个http请求可以在同一个tcp连接上进行。只要浏览器或者服务器没有明确断开连接，那么该 TCP 连接会一直保持。</strong></p>
+<p>持久连接在 HTTP/1.1 中是默认开启的Connection: keep-alive，所以你不需要专门为了持久连接去 HTTP 请求头设置信息，如果你不想要采用持久连接，可以在 HTTP 请求头中加上Connection: close。目前浏览器中对于同一个域名，默认允许同时建立 6 个 TCP 持久连接。</p>
+<img src="03.png" alt="image-20210603175501636" style="zoom:50%;" />
+
+<p><strong>第二个：管线化,是指将多个 HTTP 请求整批提交给服务器的技术，虽然可以整批发送请求，不过服务器依然需要根据请求顺序来回复浏览器的请求。</strong></p>
+<p>目的是解决队头拥塞问题：持久连接虽然能减少 TCP 的建立和断开次数，但是它需要等待前面的请求返回之后，才能进行下一次请求。如果 TCP 通道中的某个请求因为某些原因没有及时返回，那么就会阻塞后面的所有请求</p>
+<img src="04.png" alt="image-20210426214555238" style="zoom:50%;" />
+
+<p><strong>第三个：提供虚拟主机的支持，HTTP/1.1 的请求头中增加了 Host 字段，用来表示当前的域名地址，这样服务器就可以根据不同的 Host 值做不同的处理。</strong></p>
+<p>目的是在 HTTP/1.0 中，每个域名绑定了一个唯一的 IP 地址，因此一个服务器只能支持一个域名。但是随着虚拟主机技术的发展，需要实现在一台物理主机上绑定多个虚拟主机，每个虚拟主机都有自己的单独的域名，这些单独的域名都公用同一个 IP 地址。因此，就需要请求头中增加host字段，让服务器知道对应的是哪个虚拟机</p>
+<p><strong>第四个:  对动态生成的内容(文件大小未知)提供了支持，HTTP/1.1 引入 Chunk transfer 机制，服务器会将数据分割成若干个任意大小的数据块，每个数据块发送时会附上上个数据块的长度，最后使用一个零长度的块作为发送数据完成的标志。</strong></p>
+<p>目的是在设计 HTTP/1.0 时，需要在响应头中设置完整的数据大小，如Content-Length: 901，这样浏览器就可以根据设置的数据大小来接收数据。不过随着服务器端的技术发展，很多页面的内容都是动态生成的，因此在传输数据之前并不知道最终的数据大小，导致了浏览器不知道何时会接收完所有的文件数据。</p>
+<p><strong>第五个：HTTP/1.1 还引入了客户端 Cookie 机制</strong></p>
+<p><strong>第六个：补充了缓存的请求头和响应头</strong></p>
+<h2 id="4-http-2-0"><a href="#4-http-2-0" class="headerlink" title="4. http 2.0"></a>4. http 2.0</h2><h3 id="1-主要需要解决的问题"><a href="#1-主要需要解决的问题" class="headerlink" title="1. 主要需要解决的问题"></a>1. 主要需要解决的问题</h3><p><strong>第一个：一个域名只使用一个 TCP 长连接</strong></p>
+<p>目的：</p>
+<ul>
+<li><p>解决tcp有慢启动（刚连接上传输数据慢），减少tcp连接的次数</p>
+</li>
+<li><p>解决针对同一个域名最多可建立6个tcp连接，每个tcp连接都会占用部分带宽资源，且不会按照优先级分配带宽资源，导致需要先加载出来的数据慢返回</p>
+</li>
+</ul>
+<p><strong>第二个：消除队头阻塞问题</strong></p>
+<p>http1.1 管线化还是存在对头阻塞问题</p>
+<h3 id="2-解决办法：多路复用"><a href="#2-解决办法：多路复用" class="headerlink" title="2.解决办法：多路复用"></a>2.<strong>解决办法：多路复用</strong></h3><p><img src="05.png" alt="image-20210603180935559"></p>
+<img src="06.png" alt="image-20210603181614082" style="zoom:33%;" />
+
+<ul>
+<li>浏览器发送请求：将请求通过二进制分帧层，分成一帧一帧的数据去传输（一个请求可以分成多个帧，但是每帧具有相同的ID），比如stream1 请求头和请求体分成不同的帧</li>
+<li>服务器响应请求：服务器接收到所有帧之后，会将所有相同 ID 的帧合并为一条完整的请求信息，并将处理的响应行、响应头和响应体分别发送至二进制分帧层，返回时可以按照请求优先级（如script标签优先级高于图片）或者响应的速度（如stream1响应头有缓存）返回帧数据</li>
+<li>浏览器接受数据：浏览器接收到响应帧之后，会根据 ID 编号将帧的数据提交给对应的请求</li>
+</ul>
+<h3 id="3-http2-0-特性"><a href="#3-http2-0-特性" class="headerlink" title="3. http2.0 特性"></a>3. http2.0 特性</h3><ol>
+<li><strong>多路复用</strong><ul>
+<li>一个域名只使用一个 TCP 长连接</li>
+<li>消除队头阻塞问题</li>
+</ul>
+</li>
+<li><strong>可以设置请求的优先级</strong><ul>
+<li>解决服务器接收到数据，先处理优先级高的数据</li>
+</ul>
+</li>
+<li><strong>服务器推送</strong><ul>
+<li>服务器知道该 HTML 页面会引用几个重要的 JavaScript 文件和 CSS 文件，那么在接收到 HTML 请求之后，附带将要使用的 CSS 文件和 JavaScript 文件一并发送给浏览器，这样当浏览器解析完 HTML 文件之后，就能直接拿到需要的 CSS 文件和 JavaScript 文件</li>
+</ul>
+</li>
+<li><strong>头部压缩</strong><ul>
+<li>HTTP/2 对请求头和响应头进行了压缩</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-http状态码"><a href="#5-http状态码" class="headerlink" title="5. http状态码"></a>5. http状态码</h2><h3 id="5-1-http状态码分类"><a href="#5-1-http状态码分类" class="headerlink" title="5.1 http状态码分类"></a>5.1 http状态码分类</h3><p>   <strong>1XX系列</strong>：指定客户端应相应的某些动作，代表请求已被接受，需要继续处理。</p>
+<p>​    <strong>2XX系列</strong>：代表请求已成功被服务器接收、理解、并接受。如：200</p>
+<p>​    <strong>3XX系列</strong>：代表需要客户端采取进一步的操作才能完成请求，这些状态码用来重定向 如：302</p>
+<p>​    <strong>4XX系列</strong>：表示请求错误。如404</p>
+<p>​    <strong>5xx系列</strong>：代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬    件资源无法完成对请求的处理。常见有500、503状态码。</p>
+<h3 id="5-2-http常用状态码"><a href="#5-2-http常用状态码" class="headerlink" title="5.2 http常用状态码"></a>5.2 http常用状态码</h3><p>​    <strong>2开头 （请求成功）表示成功处理了请求的状态代码。</strong></p>
+<p>​    - 200 （成功） 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。 </p>
+<p>​    <strong>3开头 （请求被重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</strong></p>
+<p>​    - 301 （永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，    会自动将请求者转到新位置。</p>
+<p>​    - 302 （临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+<p>​    - 304 （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。 </p>
+<p>​    <strong>4开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。</strong></p>
+<p>​    - 403 （禁止） 服务器拒绝请求。</p>
+<p>​    - 404 （未找到） 服务器找不到请求的网页。</p>
+<p>​    <strong>5开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身        的错误，而不是请求出错。</strong></p>
+<p>​    - 500 （服务器内部错误） 服务器遇到错误，无法完成请求。 </p>
+<p>​    - 504 （网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。 </p>
+<h2 id="6-http请求头和响应头"><a href="#6-http请求头和响应头" class="headerlink" title="6. http请求头和响应头"></a>6. http请求头和响应头</h2><h3 id="6-1-常用的http请求头"><a href="#6-1-常用的http请求头" class="headerlink" title="6.1 常用的http请求头"></a>6.1 常用的http请求头</h3><p>​    <strong>1.Accept</strong></p>
+<p>​      Accept: text/html 浏览器可以接受服务器回发的类型为 text/html。</p>
+<p>​      Accept: <em>/</em> 代表浏览器可以处理所有类型,(一般浏览器发给服务器都是发这个)。</p>
+<p>​    <strong>2.Accept-Encoding</strong></p>
+<p>​      Accept-Encoding: gzip, deflate 浏览器申明自己接收的编码方法，通常指定压缩方法，是否支持压缩，支持什么压缩方法（gzip，deflate），（注意：这不是只字符编码）。</p>
+<p>​    <strong>3.Accept-Language</strong></p>
+<p>​       **Accept-Language:zh-CN,zh;q=0.9 ** 浏览器申明自己接收的语言。</p>
+<p>​    <strong>4.Connection</strong></p>
+<p>​      Connection: keep-alive 当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接。</p>
+<p>​      Connection: close 代表一个Request完成后，客户端和服务器之间用于传输HTTP数据的TCP连接会关闭， 当客户端再次发送Request，需要重新建立TCP连接。</p>
+<p>​    <strong>5.Host（发送请求时，该报头域是必需的）</strong></p>
+<p>​      Host:<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 请求报头域主要用于指定被请求资源的Internet主机和端口号，它通常从HTTP URL中提取出来的。</p>
+<p>​    <strong>6.User-Agent</strong></p>
+<p>​      User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36 告诉HTTP服务器， 客户端使用的操作系统和浏览器的名称和版本。</p>
+<p>​      服务端拿到该信息就可以统计用户访问时使用的设备</p>
+<p>​    <strong>7.Cookie</strong></p>
+<p>​      Cookie是用来存储一些用户信息以便让服务器辨别用户身份的（大多数需要登录的网站上面会比较常见），比如cookie会存储一些用户的用户名和密码，当用户登录后就会在客户端产生一个cookie来存储相关信息，这样浏览器通过读取cookie的信息去服务器上验证并通过后会判定你是合法用户，从而允许查看相应网页。当然cookie里面的数据不仅仅是上述范围，还有很多信息可以存储是cookie里面，比如sessionid等。</p>
+<p>​    <strong>8.content-type</strong>: 发送数据的格式，如：application/json  get请求一般没有</p>
+<h3 id="6-2-常见响应头"><a href="#6-2-常见响应头" class="headerlink" title="6.2 常见响应头"></a>6.2 常见响应头</h3><p><strong>1.Cache-Control（对应请求中的Cache-Control）</strong></p>
+<p>​      Cache-Control:private 默认为private 响应只能够作为私有的缓存，不能再用户间共享</p>
+<p>​      Cache-Control:public 浏览器和缓存服务器都可以缓存页面信息。</p>
+<p>​      Cache-Control:must-revalidate 对于客户机的每次请求，代理服务器必须想服务器验证缓存是否过时。</p>
+<p>​      Cache-Control:no-cache 浏览器和缓存服务器都不应该缓存页面信息。</p>
+<p>​      Cache-Control:max-age=10 是通知浏览器10秒之内不要烦我，自己从缓冲区中刷新。</p>
+<p>​      Cache-Control:no-store 请求和响应的信息都不应该被存储在对方的磁盘系统中。</p>
+<p>​    <strong>2.Last-Modified</strong></p>
+<p>​      Last-Modified: Dec, 26 Dec 2015 17:30:00 GMT 所请求的对象的最后修改日期(按照 RFC 7231 中定义的“超文本传输协议日期”格式来表示)</p>
+<p>​    <strong>3.Etag</strong></p>
+<p>​      ETag: “737060cd8c284d8af7ad3082f209582d” 就是一个对象（比如URL）的标志值，就一个对象而言，比如一个html文件，如果被修改了，其Etag也会别修改，所以，ETag的作用跟Last-Modified的作用差不多，主要供WEB服务器判断一个对象是否改变了。比如前一次请求某个html文件时，获得了其 ETag，当这次又请求这个文件时，浏览器就会把先前获得ETag值发送给WEB服务器，然后WEB服务器会把这个ETag跟该文件的当前ETag进行对比，然后就知道这个文件有没有改变了。</p>
+<p>​    <strong>4.Content-Type</strong></p>
+<p>​      Content-Type：text/html;charset=UTF-8 告诉客户端，资源文件的类型，还有字符编码，客户端通过utf-8对资源进行解码，然后对资源进行html解析。通常我们会看到有些网站是乱码的，往往就是服务器端没有返回正确的编码。</p>
+<p>​    <strong>5.Content-Encoding</strong></p>
+<p>​      Content-Encoding:gzip 告诉客户端，服务端发送的资源是采用gzip编码的，客户端看到这个信息后，应该采用gzip对资源进行解码。</p>
+<p>​    <strong>6.Date</strong></p>
+<p>​       Date: Tue, 03 Apr 2018 03:52:28 GMT 这个是服务端发送资源时的服务器时间，GMT是格林尼治所在地的标准时间。http协议中发送的时间都是GMT的，这主要是解决在互联网上，不同时区在相互请求资源的时候，时间混乱问题。</p>
+<p>​    <strong>7.Server</strong></p>
+<p>​      Server：Tengine/1.4.6 这个是服务器和相对应的版本，只是告诉客户端服务器信息<strong>。</strong></p>
+<p>   <strong>8.Expires</strong></p>
+<p>​      Expires:Sun, 1 Jan 2000 01:00:00 GMT 这个响应头也是跟缓存有关的，告诉客户端在这个时间前，可以直接访问缓存副本，很显然这个值会存在问题，因为客户端和服务器的时间不一定会都是相同的，如果时间不同就会导致问题。所以这个响应头是没有Cache-Control：max-age=*这个响应头准确的，因为max-age=date中的date是个相对时间，不仅更好理解，也更准确。</p>
+<p>​    <strong>9.Connection</strong></p>
+<p>​      Connection：keep-alive 这个字段作为回应客户端的Connection：keep-alive，告诉客户端服务器的tcp连接也是一个长连接，客户端可以继续使用这个tcp连接发送http请求。</p>
+<p>​    <strong>10.Access-Control-Allow-Origin</strong> </p>
+<p>​      **Access-Control-Allow-Origin: * ** <em>号代表所有网站可以跨域资源共享，如果当前字段为</em>那么Access-Control-Allow-Credentials就不能为true</p>
+<p>​      Access-Control-Allow-Origin: <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 指定哪些网站可以跨域资源共享</p>
+<p>​    <strong>11.Access-Control-Allow-Methods</strong></p>
+<p>​      Access-Control-Allow-Methods：GET,POST,PUT,DELETE 允许哪些方法来访问</p>
+<p>​    <strong>12.Access-Control-Allow-Credentials</strong></p>
+<p>​      Access-Control-Allow-Credentials: true 是否允许发送cookie。默认情况下，Cookie不包括在CORS请求之中。设为true，即表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。这个值也只能设为true，如果服务器不要浏览器发送Cookie，删除该字段即可。如果access-control-allow-origin为*，当前字段就不能为true</p>
+<h2 id="7-http缓存"><a href="#7-http缓存" class="headerlink" title="7.http缓存"></a>7.http缓存</h2><h3 id="7-1-http缓存的作用"><a href="#7-1-http缓存的作用" class="headerlink" title="7.1 http缓存的作用"></a>7.1 http缓存的作用</h3><ul>
+<li>节省资源，节省流量，节省时间，也就是所谓的优化。</li>
+</ul>
+<p>​      通常情况下通过网络获取内容速度慢成本高，有些响应需要在客户端和服务器之间进行多次往返通信，</p>
+<p>​      这就拖延了浏览器可以使用和处理内容的时间，同时也增加了访问者的数据成本。</p>
+<p>​      通过缓存，使用资源副本，大大减少获取资源时间，</p>
+<p>​      能够减少网络带宽消耗、减少延迟与网络阻塞，同时降低服务器压力，提高服务器性能。</p>
+<h3 id="7-2-http缓存两种方式"><a href="#7-2-http缓存两种方式" class="headerlink" title="7.2 http缓存两种方式"></a>7.2 http缓存两种方式</h3><ul>
+<li>强制缓存</li>
+<li>协商缓存</li>
+</ul>
+<h3 id="7-3-http强制缓存"><a href="#7-3-http强制缓存" class="headerlink" title="7.3 http强制缓存"></a>7.3 http强制缓存</h3><img src="08.png" alt="image-20210603183106770" style="zoom: 33%;" />
+
+
+
+<h4 id="强制缓存相关响应头"><a href="#强制缓存相关响应头" class="headerlink" title="强制缓存相关响应头"></a>强制缓存相关响应头</h4><p><strong>Cache-Control（对应请求中的Cache-Control）</strong></p>
+<ul>
+<li> max-age=xxx：缓存的内容将在 xxx 秒后失效，这个选项只在 HTTP1.1 可用，并如果和 Last-Modified 一起使用时，优先级较高。</li>
+<li> no-cache:  在浏览器使用缓存前，会往返对比 ETag，如果 ETag 没变，返回 304，则使用协商缓存。no-cache的目的就是为了防止从缓存中获取过期的资源</li>
+<li>no-store:  彻底禁用缓存，所有内容都不会被缓存到缓存或临时文件中，禁用协商缓存。</li>
+<li>public:  所有内容都将被缓存（客户端和代理服务器都可缓存）</li>
+<li>private:  内容只缓存到私有缓存中（仅客户端可以缓存，代理服务器不可缓存）</li>
+<li>Expires: Expires:Sun, 1 Jan 2000 01:00:00 GMT 这个响应头也是跟缓存有关的，</li>
+</ul>
+<p>​      告诉客户端在这个时间前，可以直接访问缓存副本，很显然这个值会存在问题，</p>
+<p>​      因为客户端和服务器的时间不一定会都是相同的，如果时间不同就会导致问题。</p>
+<p>​      所以这个响应头是没有Cache-Control：max-age=*这个响应头准确的，</p>
+<p>​      因为max-age=date中的date是个相对时间，不仅更好理解，也更准确。</p>
+<h3 id="7-4-http协商缓存"><a href="#7-4-http协商缓存" class="headerlink" title="7.4 http协商缓存"></a>7.4 http协商缓存</h3><img src="09.png" alt="image-20210604142947199" style="zoom:33%;" />
+
+
+
+<img src="10.png" alt="image-20210604143110185" style="zoom:33%;" />
+
+<img src="11.png" alt="image-20210604143251373" style="zoom:33%;" />
+
+<h4 id="相关请求头和响应头"><a href="#相关请求头和响应头" class="headerlink" title="相关请求头和响应头"></a>相关请求头和响应头</h4><h5 id="Etag-If-None-Match："><a href="#Etag-If-None-Match：" class="headerlink" title="Etag/If-None-Match："></a>Etag/If-None-Match：</h5><p>Etag：</p>
+<blockquote>
+<p>Etag是属于HTTP 1.1属性，它是由服务器（Apache或者其他工具）生成返回给前端，用来帮助服务器控制Web端的缓存验证。 Apache中，ETag的值，默认是对文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的。</p>
+</blockquote>
+<p>If-None-Match:</p>
+<blockquote>
+<p>当资源过期时，浏览器发现响应头里有Etag,则再次像服务器请求时带上请求头if-none-match(值是Etag的值)。服务器收到请求进行比对，决定返回200或304</p>
+</blockquote>
+<h5 id="Last-Modifed-If-Modified-Since："><a href="#Last-Modifed-If-Modified-Since：" class="headerlink" title="Last-Modifed/If-Modified-Since："></a>Last-Modifed/If-Modified-Since：</h5><p>Last-Modified：</p>
+<blockquote>
+<p>浏览器向服务器发送资源最后的修改时间</p>
+</blockquote>
+<p>If-Modified-Since：</p>
+<blockquote>
+<p>当资源过期时（浏览器判断Cache-Control标识的max-age过期），发现响应头具有Last-Modified声明，则再次向服务器请求时带上头if-modified-since，表示请求时间。服务器收到请求后发现有if-modified-since则与被请求资源的最后修改时间进行对比（Last-Modified）,若最后修改时间较新（大），说明资源又被改过，则返回最新资源，HTTP 200 OK;若最后修改时间较旧（小），说明资源无新修改，响应HTTP 304 走缓存。</p>
+</blockquote>
+<ul>
+<li>Last-Modifed/If-Modified-Since的时间精度是秒，而Etag可以更精确。</li>
+<li>Etag优先级是高于Last-Modifed的，所以服务器会优先验证Etag</li>
+<li>Last-Modifed/If-Modified-Since是http1.0的头字段</li>
+</ul>
+<h3 id="7-5-缓存总流程"><a href="#7-5-缓存总流程" class="headerlink" title="7.5 缓存总流程"></a>7.5 缓存总流程</h3><p><img src="http%E7%BC%93%E5%AD%98.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/" data-id="ckv61g9ei00261kmh1c9lcq8l" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8614-%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          前高频端面试题合集14-接口请求的几种方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8612-TCP-IP%E5%9B%9B%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%97%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">前高频端面试题合集12-TCP/IP四层协议族</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/" rel="tag">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript7-ECMAScript11/" rel="tag">ECMAScript7 - ECMAScript11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/ECMAScript6/" style="font-size: 15px;">ECMAScript6</a> <a href="/tags/ECMAScript7-ECMAScript11/" style="font-size: 10px;">ECMAScript7 - ECMAScript11</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" style="font-size: 17.5px;">前高频端面试题合集</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">笔记</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/">前高频端面试题合集15-跨域</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8614-%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">前高频端面试题合集14-接口请求的几种方式</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/">前高频端面试题合集13-http</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8612-TCP-IP%E5%9B%9B%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%97%8F/">前高频端面试题合集12-TCP/IP四层协议族</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8611-map%E4%B8%8Eweakmap/">前高频端面试题合集11-map与weakmap</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Yan Fei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">时间轴</a>
+  
+</nav>
+    
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js" integrity="sha256-sTy1mJ4I/LAjFCCdEB4RAvPSmRCb3CU7YqodohyeOLo=" crossorigin="anonymous"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>前高频端面试题合集15-跨域 | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 什么是跨域？  当前页面中的某个接口请求的地址和当前页面的地址如果协议、域名、端口其中有一项不同，就说该接口跨域了   2. 为什么有跨域？浏览器为了保证网页的安全，出的同源协议策略 3. 跨域报错  4. 跨域解决办法4.1 cors  目前最常用的一种解决办法，通过设置后端 ​      res.setHeader(‘Access-Control-Allow-Origin’, ‘*’);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前高频端面试题合集15-跨域">
+<meta property="og:url" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="1. 什么是跨域？  当前页面中的某个接口请求的地址和当前页面的地址如果协议、域名、端口其中有一项不同，就说该接口跨域了   2. 为什么有跨域？浏览器为了保证网页的安全，出的同源协议策略 3. 跨域报错  4. 跨域解决办法4.1 cors  目前最常用的一种解决办法，通过设置后端 ​      res.setHeader(‘Access-Control-Allow-Origin’, ‘*’);">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/img/image-20210605175504296.png">
+<meta property="og:image" content="d:/秋招集训营/05_网络/04_跨域/img/image-20210605180719928.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/img/image-20210605180026687.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/img/image-20210605185226089.png">
+<meta property="article:published_time" content="2021-10-25T01:26:02.000Z">
+<meta property="article:modified_time" content="2021-10-25T02:24:43.992Z">
+<meta property="article:author" content="Yan Fei">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="前高频端面试题合集">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/img/image-20210605175504296.png">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">时间轴</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yanfei.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-前高频端面试题合集15-跨域" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/" class="article-date">
+  <time datetime="2021-10-25T01:26:02.000Z" itemprop="datePublished">2021-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前高频端面试题合集15-跨域
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-什么是跨域？"><a href="#1-什么是跨域？" class="headerlink" title="1. 什么是跨域？"></a>1. 什么是跨域？</h2><img src="img\image-20210605175504296.png" alt="image-20210605175504296" style="zoom:50%;" />
+
+<p>当前页面中的某个接口请求的地址和当前页面的地址如果<strong>协议、域名、端口其中有一项不同</strong>，就说该接口跨域了</p>
+<img src="D:\秋招集训营\05_网络\04_跨域\img\image-20210605180719928.png" alt="image-20210605180719928" style="zoom:50%;" />
+
+<h2 id="2-为什么有跨域？"><a href="#2-为什么有跨域？" class="headerlink" title="2. 为什么有跨域？"></a>2. 为什么有跨域？</h2><p><strong>浏览器</strong>为了保证网页的安全，出的<strong>同源协议策略</strong></p>
+<h2 id="3-跨域报错"><a href="#3-跨域报错" class="headerlink" title="3. 跨域报错"></a>3. 跨域报错</h2><img src="img\image-20210605180026687.png" />
+
+<h2 id="4-跨域解决办法"><a href="#4-跨域解决办法" class="headerlink" title="4. 跨域解决办法"></a>4. 跨域解决办法</h2><h3 id="4-1-cors"><a href="#4-1-cors" class="headerlink" title="4.1 cors"></a>4.1 cors</h3><p>  <strong>目前最常用的一种解决办法，通过设置后端</strong></p>
+<p>​      res.setHeader(‘Access-Control-Allow-Origin’, ‘*’);</p>
+<p>​      res.setHeader(“Access-Control-Allow-Methods”, “GET, PUT, OPTIONS, POST”);</p>
+<p>​    </p>
+<h3 id="4-2-jsonp"><a href="#4-2-jsonp" class="headerlink" title="4.2 jsonp"></a>4.2 jsonp</h3><p><strong>利用的原理是script标签可以跨域请求资源，将回调函数作为参数拼接在url中</strong></p>
+<p>​         后端收到请求，调用该回调函数，并将数据作为参数返回去，注意设置响应头返回文档类型，应该设置成javascript</p>
+<h3 id="4-3-postmessage"><a href="#4-3-postmessage" class="headerlink" title="4.3 postmessage"></a>4.3 postmessage</h3><p>​      场景：一个页面中嵌入另一个iframe页面，</p>
+<p>​        使用postmessage发送数据</p>
+<p>​        window.addEventListener(“message”, function (event) {</p>
+<p>​          console.log(‘这里是接收到来自父页面的消息，消息内容在event.data属性中’, event)</p>
+<p>​        }, false)</p>
+<h3 id="4-4-其他方法：node中间件、nginx反向代理、websocket等"><a href="#4-4-其他方法：node中间件、nginx反向代理、websocket等" class="headerlink" title="4.4 其他方法：node中间件、nginx反向代理、websocket等"></a>4.4 其他方法：node中间件、nginx反向代理、websocket等</h3><p>主要是因为同源策略是浏览器的限制，服务器和服务器之间没有限制</p>
+<img src="img\image-20210605185226089.png" alt="image-20210605185226089" style="zoom:50%;" />
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/" data-id="ckv61g9e0000a1kmhh8q3ceah" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8614-%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">前高频端面试题合集14-接口请求的几种方式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/" rel="tag">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript7-ECMAScript11/" rel="tag">ECMAScript7 - ECMAScript11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/ECMAScript6/" style="font-size: 15px;">ECMAScript6</a> <a href="/tags/ECMAScript7-ECMAScript11/" style="font-size: 10px;">ECMAScript7 - ECMAScript11</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" style="font-size: 17.5px;">前高频端面试题合集</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">笔记</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/">前高频端面试题合集15-跨域</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8614-%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">前高频端面试题合集14-接口请求的几种方式</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8613-http/">前高频端面试题合集13-http</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8612-TCP-IP%E5%9B%9B%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%97%8F/">前高频端面试题合集12-TCP/IP四层协议族</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8611-map%E4%B8%8Eweakmap/">前高频端面试题合集11-map与weakmap</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Yan Fei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">时间轴</a>
+  
+</nav>
+    
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js" integrity="sha256-sTy1mJ4I/LAjFCCdEB4RAvPSmRCb3CU7YqodohyeOLo=" crossorigin="anonymous"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
