@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>前高频端面试题合集16-浏览器运行原理 | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 浏览器内部构造 用户界面 - 包括地址栏、前进&#x2F;后退按钮、书签菜单等。除了浏览器主窗口显示的您请求的页面外，其他显示的各个部分都属于用户界面。 浏览器引擎 - 在用户界面和呈现引擎之间传送指令。 渲染引擎 - 负责显示请求的内容。如果请求的内容是 HTML，它就负责解析 HTML 和 CSS 内容，并将解析后的内容显示在屏幕上。 网络 - 用于网络调用，比如 HTTP 请求。其接口与平台无关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前高频端面试题合集16-浏览器运行原理">
+<meta property="og:url" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="1. 浏览器内部构造 用户界面 - 包括地址栏、前进&#x2F;后退按钮、书签菜单等。除了浏览器主窗口显示的您请求的页面外，其他显示的各个部分都属于用户界面。 浏览器引擎 - 在用户界面和呈现引擎之间传送指令。 渲染引擎 - 负责显示请求的内容。如果请求的内容是 HTML，它就负责解析 HTML 和 CSS 内容，并将解析后的内容显示在屏幕上。 网络 - 用于网络调用，比如 HTTP 请求。其接口与平台无关">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/layers.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/03.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/04.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/01.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/02.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E5%B7%A5%E4%BD%9C.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/image-20210615172629674.png">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/image-20210615172906367.png">
+<meta property="article:published_time" content="2021-10-26T09:09:57.000Z">
+<meta property="article:modified_time" content="2021-10-26T09:10:42.237Z">
+<meta property="article:author" content="Yan Fei">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="前高频端面试题合集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/layers.png">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">时间轴</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yanfei.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-前高频端面试题合集16-浏览器运行原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2021-10-26T09:09:57.000Z" itemprop="datePublished">2021-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前高频端面试题合集16-浏览器运行原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-浏览器内部构造"><a href="#1-浏览器内部构造" class="headerlink" title="1. 浏览器内部构造"></a>1. 浏览器内部构造</h2><ol>
+<li><strong>用户界面</strong> - 包括地址栏、前进/后退按钮、书签菜单等。除了浏览器主窗口显示的您请求的页面外，其他显示的各个部分都属于用户界面。</li>
+<li><strong>浏览器引擎</strong> - 在用户界面和呈现引擎之间传送指令。</li>
+<li><strong>渲染引擎</strong> - 负责显示请求的内容。如果请求的内容是 HTML，它就负责解析 HTML 和 CSS 内容，并将解析后的内容显示在屏幕上。</li>
+<li><strong>网络</strong> - 用于网络调用，比如 HTTP 请求。其接口与平台无关，并为所有平台提供底层实现。</li>
+<li><strong>用户界面后端</strong> - 用于绘制基本的窗口小部件，比如组合框和窗口。其公开了与平台无关的通用接口，而在底层使用操作系统的用户界面方法。</li>
+<li><strong>JavaScript 解释器</strong>。用于解析和执行 JavaScript 代码。</li>
+<li><strong>数据存储</strong>。这是持久层。浏览器需要在硬盘上保存各种数据，例如 Cookie。新的 HTML 规范 (HTML5) 定义了“网络数据库”，这是一个完整（但是轻便）的浏览器内数据库。</li>
+</ol>
+<p><img src="layers.png"></p>
+<h2 id="2-浏览器的进程"><a href="#2-浏览器的进程" class="headerlink" title="2. 浏览器的进程"></a>2. 浏览器的进程</h2><h3 id="2-1-进程和线程"><a href="#2-1-进程和线程" class="headerlink" title="2.1 进程和线程"></a>2.1 进程和线程</h3><ul>
+<li><p>进程：一个进程就是一个程序的运行实例。详细解释就是，启动一个程序的时候，操作系统会为该程序创建一块内存，用来存放代码、运行中的数据和一个执行任务的主线程，我们把这样的一个运行环境叫进程。</p>
+</li>
+<li><p>线程：程序执行的最小单位</p>
+<img src="03.png" alt="image-20210611155145135" style="zoom:33%;" /></li>
+<li><p>进程和线程的关系：线程是依附于进程的，而进程中使用多线程并行处理能提升运算效率</p>
+</li>
+<li><p>进程和线程特点：</p>
+<ul>
+<li><p>关联性：</p>
+<ul>
+<li>线程中某个任务报错，阻止后面任务执行</li>
+<li>进程中的任意一线程执行出错，都会导致整个进程的崩溃。</li>
+<li>一个程序有多个进程，其中一个崩溃不影响其他进程。</li>
+</ul>
+</li>
+<li><p>当一个进程关闭之后，操作系统会回收进程所占用的内存。</p>
+</li>
+<li><p>数据共享：线程之间共享进程中的数据   进程之间的内容相互隔离。</p>
+<img src="04.png" alt="image-20210611161751488" style="zoom:33%;" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-浏览器进程"><a href="#2-2-浏览器进程" class="headerlink" title="2.2 浏览器进程"></a>2.2 浏览器进程</h3><p>现代浏览器是多进程，每个标签页都是一个独立的渲染进程，比如写一个死循环，只有当前页面崩溃</p>
+<img src="01.png" alt="image-20210611152356832" style="zoom: 33%;" />
+
+<p><img src="02.png" alt="image-20210611152504603"></p>
+<ul>
+<li><p><strong>浏览器进程</strong>：主要负责界面显示、用户交互、子进程管理，同时提供存储等功能。</p>
+</li>
+<li><p><strong>渲染进程</strong>：核心任务是将 HTML、CSS 和 JavaScript 转换为用户可以与之交互的网页，排版引擎 Blink 和 JavaScript 引擎 V8 都是运行在该进程中，默认情况下，Chrome 会为每个 Tab 标签创建一个渲染进程。</p>
+</li>
+<li><p><strong>GPU 进程</strong>：其实，Chrome 刚开始发布的时候是没有 GPU 进程的。而 GPU 的使用初衷是为了实现 3D CSS 的效果，只是随后网页、Chrome 的 UI 界面都选择采用 GPU 来绘制，这使得 GPU 成为浏览器普遍的需求。最后，Chrome 在其多进程架构上也引入了 GPU 进程。</p>
+</li>
+<li><p><strong>网络进程</strong>：主要负责页面的网络资源加载，之前是作为一个模块运行在浏览器进程里面的，直至最近才独立出来，成为一个单独的进程。</p>
+</li>
+<li><p><strong>插件进程</strong>。主要是负责插件的运行，因插件易崩溃，所以需要通过插件进程来隔离，以保证插件进程崩溃不会对浏览器和页面造成影响</p>
+</li>
+</ul>
+<h2 id="3-渲染进程"><a href="#3-渲染进程" class="headerlink" title="3. 渲染进程"></a>3. 渲染进程</h2><p>渲染进程的<strong>核心工作是将HTML,CSS和JavaScript转换为用户可以与之交互的网页。</strong>主要包括以下线程：</p>
+<h3 id="2-1-浏览器-GUI-渲染线程"><a href="#2-1-浏览器-GUI-渲染线程" class="headerlink" title="2.1 浏览器 GUI 渲染线程"></a>2.1 浏览器 GUI 渲染线程</h3><h4 id="2-1-1-渲染流程"><a href="#2-1-1-渲染流程" class="headerlink" title="2.1.1 渲染流程"></a>2.1.1 渲染流程</h4><p><img src="%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E5%B7%A5%E4%BD%9C.png" alt="image-20210615171514782"></p>
+<ul>
+<li>分层的目的：避免整个页面渲染，把页面分成多个图层，尤其是动画的时候，把动画独立出一个图层，渲染时只渲染该图层就ok，transform，z-index等，浏览器会自动优化生成图层</li>
+<li>光栅化：页面如果很长但是可视区很小，避免渲染非可视区的样式造成资源浪费，所以将每个图层又划分成多个小个子，当前只渲染可视区附近区域</li>
+</ul>
+<h4 id="2-1-2-重排"><a href="#2-1-2-重排" class="headerlink" title="2.1.2 重排"></a>2.1.2 重排</h4><ul>
+<li><p>重排 ：当DOM的变化影响了元素的几何信息(元素的的位置和尺寸大小)，浏览器需要重新计算元素的几何属性，将其安放在界面中的正确位置，这个过程叫做重排</p>
+</li>
+<li><p>重排特点：style后面所有流程都更新</p>
+</li>
+</ul>
+<p><img src="image-20210615172629674.png" alt="image-20210615172629674"></p>
+<ul>
+<li><p>触发重排的方法</p>
+<ul>
+<li><p>页面初始渲染，这是开销最大的一次重排</p>
+</li>
+<li><p>添加/删除可见的DOM元素</p>
+</li>
+<li><p>改变元素位置</p>
+</li>
+<li><p>改变元素尺寸，比如边距、填充、边框、宽度和高度等</p>
+</li>
+<li><p>改变元素内容，比如文字数量，图片大小等</p>
+</li>
+<li><p>改变元素字体大小</p>
+</li>
+<li><p>改变浏览器窗口尺寸，比如resize事件发生时</p>
+</li>
+<li><p>激活CSS伪类（例如：<code>:hover</code>）</p>
+</li>
+<li><p>设置 style 属性的值，因为通过设置style属性改变结点样式的话，每一次设置都会触发一次reflow</p>
+<p>查询某些属性或调用某些计算方法：offsetWidth、offsetHeight等</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-1-3-重绘"><a href="#2-1-3-重绘" class="headerlink" title="2.1.3 重绘"></a>2.1.3 重绘</h4><ul>
+<li><p>重绘：当一个元素的外观发生改变，但没有改变布局,重新把元素外观绘制出来的过程</p>
+</li>
+<li><p>重绘特点：跳过布局和分层阶段</p>
+</li>
+</ul>
+<p><img src="image-20210615172906367.png" alt="image-20210615172906367"></p>
+<ul>
+<li>重排必重绘</li>
+</ul>
+<h4 id="2-1-4-避免重排的方法"><a href="#2-1-4-避免重排的方法" class="headerlink" title="2.1.4 避免重排的方法"></a>2.1.4 避免重排的方法</h4><ul>
+<li><p>样式集中改变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">var</span> left = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> top = <span class="number">10</span>;</span><br><span class="line">el.style.left = left + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">el.style.top = top + <span class="string">&quot;px&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当top和left的值是动态计算而成时...</span></span><br><span class="line"><span class="comment">// better </span></span><br><span class="line">el.style.cssText += <span class="string">&quot;; left: &quot;</span> + left + <span class="string">&quot;px; top: &quot;</span> + top + <span class="string">&quot;px;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// better</span></span><br><span class="line">el.className += <span class="string">&quot; className&quot;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>使用 absolute 或 fixed 脱离文档流</p>
+<p>使用绝对定位会使的该元素单独成为渲染树中 <code>body</code> 的一个子元素，重排开销比较小，不会对其它节点造成太多影响。当你在这些节点上放置这个元素时，一些其它在这个区域内的节点可能需要重绘，但是不需要重排</p>
+</li>
+<li><p>GPU加速:transform</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 根据上面的结论</span></span><br><span class="line"><span class="comment">* 将 2d transform 换成 3d</span></span><br><span class="line"><span class="comment">* 就可以强制开启 GPU 加速</span></span><br><span class="line"><span class="comment">* 提高动画性能</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">10px</span>, <span class="number">10px</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-2-JavaScript-引擎线程"><a href="#2-2-JavaScript-引擎线程" class="headerlink" title="2.2 JavaScript 引擎线程"></a>2.2 JavaScript 引擎线程</h3><p>JS引擎线程负责解析Javascript脚本，运行代码 JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序</p>
+<p>GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞</p>
+<h3 id="2-3-浏览器定时触发器线程"><a href="#2-3-浏览器定时触发器线程" class="headerlink" title="2.3 浏览器定时触发器线程"></a>2.3 浏览器定时触发器线程</h3><p>浏览器定时计数器并不是由 JavaScript 引擎计数的, 因为 JavaScript 引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确, 因此通过单独线程来计时并触发定时是更为合理的方案</p>
+<h3 id="2-4-浏览器事件触发线程"><a href="#2-4-浏览器事件触发线程" class="headerlink" title="2.4 浏览器事件触发线程"></a>2.4 浏览器事件触发线程</h3><p>当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待 JavaScript 引擎的处理。这些事件可以是当前执行的代码块如定时任务、也可来自浏览器内核的其他线程如鼠标点击、AJAX 异步请求等，但由于 JavaScript 的单线程关系所有这些事件都得排队等待 JavaScript 引擎处理。</p>
+<h3 id="2-5-浏览器-http-异步请求线程"><a href="#2-5-浏览器-http-异步请求线程" class="headerlink" title="2.5 浏览器 http 异步请求线程"></a>2.5 浏览器 http 异步请求线程</h3><p>在 XMLHttpRequest 在连接后是通过浏览器新开一个线程请求， 将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件放到 JavaScript 引擎的处理队列中等待处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/" data-id="ckv7vhq7u000fqkmh61u0hkz2" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8617-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          前高频端面试题合集17-浏览器调试工具
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">前高频端面试题合集15-跨域</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/" rel="tag">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript7-ECMAScript11/" rel="tag">ECMAScript7 - ECMAScript11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/ECMAScript6/" style="font-size: 15px;">ECMAScript6</a> <a href="/tags/ECMAScript7-ECMAScript11/" style="font-size: 10px;">ECMAScript7 - ECMAScript11</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" style="font-size: 17.5px;">前高频端面试题合集</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">笔记</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8618-V8%E5%BC%95%E6%93%8E%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E4%BB%A3%E7%A0%81/">前高频端面试题合集18-V8引擎如何运行代码</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8617-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/">前高频端面试题合集17-浏览器调试工具</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8616-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/">前高频端面试题合集16-浏览器运行原理</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8615-%E8%B7%A8%E5%9F%9F/">前高频端面试题合集15-跨域</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8614-%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">前高频端面试题合集14-接口请求的几种方式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Yan Fei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">时间轴</a>
+  
+</nav>
+    
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js" integrity="sha256-sTy1mJ4I/LAjFCCdEB4RAvPSmRCb3CU7YqodohyeOLo=" crossorigin="anonymous"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
