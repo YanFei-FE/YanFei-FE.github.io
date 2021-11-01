@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>前高频端面试题合集20-promise与async await | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. promise  promise语法 12345678const p1 &#x3D; new  Promise((reslove,reject)&#x3D;&gt;&amp;#123;        console.log(2);        reslove(1)&amp;#125;).then((data)&#x3D;&gt;&amp;#123;      console.log(3);&amp;#125;).catch((data)&#x3D;&gt;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前高频端面试题合集20-promise与async await">
+<meta property="og:url" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8620-promise%E4%B8%8Easync%20await/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="1. promise  promise语法 12345678const p1 &#x3D; new  Promise((reslove,reject)&#x3D;&gt;&amp;#123;        console.log(2);        reslove(1)&amp;#125;).then((data)&#x3D;&gt;&amp;#123;      console.log(3);&amp;#125;).catch((data)&#x3D;&gt;&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8620-promise%E4%B8%8Easync%20await/image-20210616182646512.png">
+<meta property="article:published_time" content="2021-10-31T07:06:25.000Z">
+<meta property="article:modified_time" content="2021-10-31T07:07:17.595Z">
+<meta property="article:author" content="Yan Fei">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="前高频端面试题合集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8620-promise%E4%B8%8Easync%20await/image-20210616182646512.png">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">时间轴</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yanfei.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-前高频端面试题合集20-promise与async await" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8620-promise%E4%B8%8Easync%20await/" class="article-date">
+  <time datetime="2021-10-31T07:06:25.000Z" itemprop="datePublished">2021-10-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前高频端面试题合集20-promise与async await
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-promise"><a href="#1-promise" class="headerlink" title="1. promise"></a>1. promise</h2><p><img src="image-20210616182646512.png" alt="image-20210616182646512"></p>
+<ol>
+<li><p>promise语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span>  <span class="built_in">Promise</span>(<span class="function">(<span class="params">reslove,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">        reslove(<span class="number">1</span>)</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​    2. 三种状态</p>
+<p>​      pending： 在过程中还没有结果</p>
+<p>​      fulfilled: 已经解决了</p>
+<p>​      rejected:被拒绝了，失败了</p>
+<p>​    3. 状态的变化和表现</p>
+<p>​     （1）状态一旦生成，不会因为后面再调用的resolve或者reject而改变</p>
+<p>​     （2）不执行resolve或者reject就一直是pending状态，pending不会触发then和catch</p>
+<p>​        (3) resolve 方法的参数是then中回调函数的参数</p>
+<p>​              reject 方法中的参数是catch中的参数</p>
+<p>​        (4) Promise.resolve()返回fulfilled状态的promise</p>
+<p>​             Promise.rejetc()返回rejected状态的promise</p>
+<p>​       (5) then 和 catch 只要不报错，返回的都是一个fullfilled状态的promise</p>
+<h2 id="2-promise-all"><a href="#2-promise-all" class="headerlink" title="2. promise.all"></a>2. promise.all</h2><h3 id="2-1-promise-all基本使用"><a href="#2-1-promise-all基本使用" class="headerlink" title="2.1 promise.all基本使用"></a>2.1 promise.all基本使用</h3><ol>
+<li><p>promise.all 基本语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([p1, p2]).then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(result)              </span><br><span class="line"> &#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>promise特点</p>
+<ul>
+<li>Promise.all可以将多个Promise实例包装成一个新的Promise实例</li>
+<li>当参数中的所有promise全部成功时返回成功结果，且结果是所有promise返回成功结果的数组</li>
+<li>只要数组中有一个promise失败，则返回失败，结果是第一个失败的promise的值</li>
+</ul>
+</li>
+<li><p>使用场景： 如果有一个接口需要等待，页面上两个接口都返回数据才调用，有一个失败就不调用的情况</p>
+</li>
+</ol>
+<h3 id="2-2-手写promise-all"><a href="#2-2-手写promise-all" class="headerlink" title="2.2 手写promise.all"></a>2.2 手写promise.all</h3><p>​      思路：</p>
+<p>​       1、接收一个 Promise 实例的数组或具有 Iterator 接口的对象，</p>
+<p>​       2、遍历每一个数组元素，如果元素不是 Promise 对象，则使用 Promise.resolve 转成 Promise 对象</p>
+<p>​       3、如果全部成功，状态变为 resolved，返回值将组成一个数组传给回调</p>
+<p>​       4、只要有一个失败，状态就变为 rejected，返回值将直接传递给回调all() </p>
+<p>​         的返回值也是新的 Promise 对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseAll</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(promises)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;arguments must be an array&#x27;</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> resolvedCounter = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">var</span> promiseNum = promises.length;</span><br><span class="line">                <span class="keyword">var</span> resolvedValues = <span class="keyword">new</span> <span class="built_in">Array</span>(promiseNum);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; promiseNum; i++) &#123;</span><br><span class="line">                    <span class="built_in">Promise</span>.resolve(promises[i]).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">                        resolvedCounter++</span><br><span class="line">                        resolvedValues[i] = value</span><br><span class="line">                        <span class="keyword">if</span> (resolvedCounter == promiseNum) &#123;</span><br><span class="line">                            <span class="keyword">return</span> resolve(resolvedValues)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> reject(reason)</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-promise-race"><a href="#3-promise-race" class="headerlink" title="3. promise.race"></a>3. promise.race</h2><h3 id="3-1-基本使用"><a href="#3-1-基本使用" class="headerlink" title="3.1 基本使用"></a>3.1 基本使用</h3><ol>
+<li><p>基本语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.race([p1, p2]).then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">           <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">         <span class="built_in">console</span>.log(error)  <span class="comment">// 打开的是 &#x27;failed&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>特点：Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态</p>
+</li>
+</ol>
+<h3 id="3-2-手写promise-race"><a href="#3-2-手写promise-race" class="headerlink" title="3.2 手写promise.race"></a>3.2 手写promise.race</h3><p> 思路：</p>
+<p>​        返回一个创建的promise，在该promise的then中遍历每一个数组元素，并且当</p>
+<p>​        某个元素有返回，直接执行创建的promise的resolve/reject</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseRace</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(promises)) &#123;</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;promises must be an array&quot;</span>)</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">               promises.forEach(<span class="function"><span class="params">p</span> =&gt;</span></span><br><span class="line">                   <span class="built_in">Promise</span>.resolve(p).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">                       resolve(data)</span><br><span class="line">                   &#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">                       reject(err)</span><br><span class="line">                   &#125;)</span><br><span class="line">               )</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-async-await"><a href="#4-async-await" class="headerlink" title="4. async await"></a>4. async await</h2><h3 id="4-1-基本语法"><a href="#4-1-基本语法" class="headerlink" title="4.1 基本语法"></a>4.1 基本语法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;async1 start&#x27;</span>);</span><br><span class="line">            <span class="keyword">await</span> async2();</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;async1 end&#x27;</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-特点"><a href="#4-2-特点" class="headerlink" title="4.2 特点"></a>4.2 特点</h3><ol>
+<li><p>await关键字只能在async函数中使用</p>
+</li>
+<li><p>await 后面跟着的应该是一个promise对象</p>
+</li>
+<li><p>await 表示在这里等待promise返回结果了，再继续执行。</p>
+</li>
+<li><p> await 相当于promise的then情况，所以promise返回catch没办法处理，所以捕获问题需要配合trycatch使用</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <!-- <a data-url="https://yanfei.me/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8620-promise%E4%B8%8Easync%20await/" data-id="ckvgt8625000q64mh57nk8u34" class="article-share-link">分享</a> -->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8621-%E7%BB%A7%E6%89%BF%20%E4%B8%8E%20%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          前高频端面试题合集21-继承 与 原型、原型链
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8619-%E5%BC%82%E6%AD%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">前高频端面试题合集19-异步</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/" rel="tag">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript7-ECMAScript11/" rel="tag">ECMAScript7 - ECMAScript11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/" rel="tag">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VUE/" rel="tag">VUE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" rel="tag">前高频端面试题合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/ECMAScript6/" style="font-size: 15px;">ECMAScript6</a> <a href="/tags/ECMAScript7-ECMAScript11/" style="font-size: 10px;">ECMAScript7 - ECMAScript11</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VUE/" style="font-size: 10px;">VUE</a> <a href="/tags/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/" style="font-size: 17.5px;">前高频端面试题合集</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 20px;">笔记</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8623-%E8%A7%82%E5%AF%9F%E8%80%85%E4%B8%8E%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E8%80%85%E6%A8%A1%E5%BC%8F/">前高频端面试题合集23-观察者与发布订阅者模式</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8622-%E5%AE%89%E5%85%A8/">前高频端面试题合集22-安全</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8621-%E7%BB%A7%E6%89%BF%20%E4%B8%8E%20%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE/">前高频端面试题合集21-继承 与 原型、原型链</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8620-promise%E4%B8%8Easync%20await/">前高频端面试题合集20-promise与async await</a>
+          </li>
+        
+          <li>
+            <a href="/%E5%89%8D%E9%AB%98%E9%A2%91%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%8619-%E5%BC%82%E6%AD%A5/">前高频端面试题合集19-异步</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Yan Fei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">时间轴</a>
+  
+</nav>
+    
+
+<script src="https://code.jquery.com/jquery-2.0.3.min.js" integrity="sha256-sTy1mJ4I/LAjFCCdEB4RAvPSmRCb3CU7YqodohyeOLo=" crossorigin="anonymous"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
